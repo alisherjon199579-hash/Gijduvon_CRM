@@ -20,7 +20,7 @@ ROLES = {
 }
 
 STATUSES = [
-    "Qabul qilindi", "Yuvilmoqda", "Siqildi", "Quritilmoqda",
+    "Qabul qilindi", "Yuvilmoqda",
     "Qadoqlandi", "Yetkazishga tayyor", "Yetkazildi"
 ]
 
@@ -169,46 +169,68 @@ def roles_required(*roles):
     return decorator
 
 
+# YAGONA PROFESSIONAL DIZAYN (UI/UX)
 BASE = """
 <!doctype html><html lang="uz"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ title }} | G‘ijduvon Toza Gilam CRM</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a}
-header{background:#064e3b;color:#fff;padding:16px 24px;box-shadow:0 4px 12px #00000015}
-header h2{margin:0 0 4px;font-size:22px;font-weight:700}
-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-nav a{color:#ecfdf5;text-decoration:none;background:#ffffff18;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;transition:all 0.2s}
-nav a:hover{background:#ffffff30}
-main{max-width:1200px;margin:24px auto;padding:0 16px 40px}
-.card{background:white;padding:24px;border-radius:14px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.05),0 10px 15px -3px rgba(0,0,0,0.03);border:1px solid #e2e8f0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.stat{font-size:26px;font-weight:800;color:#047857;margin-top:8px}
-input,select,textarea,button{width:100%;padding:11px 14px;margin:6px 0 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;outline:none;transition:border-color 0.2s}
-input:focus,select:focus,textarea:focus{border-color:#059669;box-shadow:0 0 0 3px #10b98120}
-button,.btn{background:#059669;color:white;border:0;cursor:pointer;padding:12px 18px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;display:inline-block;text-align:center;transition:background 0.2s}
-button:hover,.btn:hover{background:#047857}
-.btn.secondary{background:#64748b}.btn.secondary:hover{background:#475569}
-.btn.sm{padding:6px 12px;font-size:13px;border-radius:6px}
-table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
-th{background:#f8fafc;font-size:13px;color:#475569;text-transform:uppercase;letter-spacing:0.5px}
-.wrap{overflow-x:auto}.small{font-size:13px;color:#64748b}.error{color:#dc2626;font-weight:600}.success{color:#059669;font-weight:600}
-label{font-weight:600;font-size:14px;color:#334155}
-.badge{display:inline-block;background:#ecfdf5;color:#047857;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid #a7f3d0}
-.calc-box{background:#f0fdf4;border:1px solid #bbf7d0;padding:16px;border-radius:10px;margin-bottom:16px}
-.calc-title{font-weight:700;color:#166534;margin-bottom:8px}
-@media(max-width:600px){header{padding:14px}main{padding:0 10px}.card{padding:16px}th,td{padding:8px;font-size:13px}}
-</style></head><body><header><h2>G‘ijduvon Toza Gilam</h2>
-<div>Professional CRM | {{ username or 'Kirish' }}</div>
-{% if username %}<nav>
-<a href="/">Bosh sahifa</a>
-{% if role in ['admin','operator'] %}<a href="/customers">Mijozlar</a><a href="/orders">Buyurtmalar</a>{% endif %}
-{% if role == 'admin' %}<a href="/employees">Xodimlar</a>{% endif %}
-{% if role in ['admin','delivery'] %}<a href="/delivery">Dostavchik paneli</a>{% endif %}
-{% if role == 'admin' %}<a href="/delivery-report">Dostavchik hisoboti</a>{% endif %}
-{% if role in ['admin','washer','dryer','packer'] %}<a href="/production">Ishlab chiqarish</a>{% endif %}
-{% if role in ['admin','cashier'] %}<a href="/finance">Moliya</a>{% endif %}
-<a href="/logout">Chiqish</a></nav>{% endif %}</header><main>{{ content|safe }}</main></body></html>
+:root {
+  --primary: #064e3b;
+  --primary-hover: #047857;
+  --accent: #10b981;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg-color);color:var(--text-main);line-height:1.5}
+header{background:var(--primary);color:#fff;padding:18px 28px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+header h2{margin:0 0 6px;font-size:22px;font-weight:700;letter-spacing:-0.5px}
+header div{font-size:13px;color:#a7f3d0;text-transform:uppercase;letter-spacing:1px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+nav a{color:#ecfdf5;text-decoration:none;background:rgba(255,255,255,0.12);padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;transition:all 0.2s ease}
+nav a:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px)}
+main{max-width:1250px;margin:28px auto;padding:0 20px 50px}
+.card{background:var(--card-bg);padding:24px;border-radius:16px;margin-bottom:20px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.02),0 2px 4px -1px rgba(0,0,0,0.02);border:1px solid var(--border-color)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.stat{font-size:28px;font-weight:800;color:var(--primary-hover);margin-top:8px}
+input,select,textarea,button{width:100%;padding:12px 16px;margin:6px 0 16px;border:1px solid var(--border-color);border-radius:10px;font-size:15px;background:#fff;outline:none;transition:all 0.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(16,185,129,0.1)}
+button,.btn{background:var(--accent);color:white;border:0;cursor:pointer;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;display:inline-block;text-align:center;transition:all 0.2s}
+button:hover,.btn:hover{background:var(--primary-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(16,185,129,0.2)}
+.btn.secondary{background:#64748b}.btn.secondary:hover{background:#475569;box-shadow:0 4px 12px rgba(100,116,139,0.2)}
+.btn.sm{padding:6px 12px;font-size:13px;border-radius:8px}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--border-color);vertical-align:middle}
+th{background:#f8fafc;font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;font-weight:700}
+tr:hover td{background:#fafafa}
+.wrap{overflow-x:auto}.small{font-size:13px;color:var(--text-muted)}
+.error{background:#fef2f2;color:#dc2626;padding:12px 16px;border-radius:10px;border:1px solid #fecaca;margin-bottom:16px;font-weight:500}
+.success{background:#f0fdf4;color:#059669;padding:12px 16px;border-radius:10px;border:1px solid #bbf7d0;margin-bottom:16px;font-weight:500}
+label{font-weight:600;font-size:13px;color:#334155;display:block;margin-bottom:4px}
+.badge{display:inline-block;background:#ecfdf5;color:#047857;padding:6px 12px;border-radius:30px;font-size:12px;font-weight:600;border:1px solid #a7f3d0}
+.calc-box{background:#f0fdf4;border:1px solid #bbf7d0;padding:20px;border-radius:12px;margin-bottom:20px}
+.calc-title{font-weight:700;color:#166534;margin-bottom:10px;font-size:16px}
+@media(max-width:768px){header{padding:14px 16px}main{margin:16px auto;padding:0 12px}.card{padding:16px}th,td{padding:10px 8px;font-size:13px}}
+</style></head><body>
+<header>
+  <h2>G‘ijduvon Toza Gilam</h2>
+  <div>Professional CRM &bull; {{ username or 'Kirish' }}</div>
+  {% if username %}<nav>
+    <a href="/">Bosh sahifa</a>
+    {% if role in ['admin','operator'] %}<a href="/customers">Mijozlar</a><a href="/orders">Buyurtmalar</a>{% endif %}
+    {% if role == 'admin' %}<a href="/employees">Xodimlar</a>{% endif %}
+    {% if role in ['admin','delivery'] %}<a href="/delivery">Dostavchik paneli</a>{% endif %}
+    {% if role == 'admin' %}<a href="/delivery-report">Dostavchik hisoboti</a>{% endif %}
+    {% if role in ['admin','washer','dryer','packer'] %}<a href="/production">Ishlab chiqarish</a>{% endif %}
+    {% if role in ['admin','cashier'] %}<a href="/finance">Moliya</a>{% endif %}
+    <a href="/logout" style="background:rgba(239,68,68,0.2);color:#fca5a5;">Chiqish</a>
+  </nav>{% endif %}
+</header>
+<main>{{ content|safe }}</main>
+</body></html>
 """
 
 
@@ -223,15 +245,15 @@ def page(content, title="CRM", **context):
 
 
 LOGIN = """
-<div class="card" style="max-width:400px;margin:50px auto;">
-<h2 style="text-align:center;color:#064e3b;">CRM tizimiga kirish</h2>
-{% if error %}<p class="error" style="text-align:center;">{{ error }}</p>{% endif %}
-<form method="post">
-<label>Login</label><input name="username" required autocomplete="username" placeholder="Loginni kiriting">
-<label>Parol</label><input type="password" name="password" required autocomplete="current-password" placeholder="Parolni kiriting">
-<button style="width:100%;margin-top:10px;">Kirish</button>
-</form>
-<p class="small" style="text-align:center;margin-top:15px;">Dastlabki administrator: admin / Admin123!</p>
+<div class="card" style="max-width:420px;margin:60px auto;padding:32px;">
+  <h2 style="text-align:center;color:var(--primary);margin-bottom:24px;">Tizimga kirish</h2>
+  {% if error %}<div class="error" style="text-align:center;">{{ error }}</div>{% endif %}
+  <form method="post">
+    <label>Login</label><input name="username" required autocomplete="username" placeholder="Loginingizni kiriting">
+    <label>Parol</label><input type="password" name="password" required autocomplete="current-password" placeholder="Parolni kiriting">
+    <button style="width:100%;margin-top:10px;">Kirish</button>
+  </form>
+  <p class="small" style="text-align:center;margin-top:20px;">Dastlabki administrator: <b>admin</b> / <b>Admin123!</b></p>
 </div>
 """
 
@@ -268,16 +290,28 @@ def home():
         """).fetchall()
     content = """
     <div class="grid">
-    <div class="card">Jami buyurtmalar<div class="stat">{{ s.orders_count or 0 }}</div></div>
-    <div class="card">Mijozlar<div class="stat">{{ customers }}</div></div>
-    <div class="card">Yetkazishga tayyor<div class="stat">{{ s.ready or 0 }}</div></div>
-    <div class="card">Buyurtma summasi<div class="stat">{{ "%.0f"|format(s.total) }} so‘m</div></div>
-    <div class="card">Qolgan qarz<div class="stat">{{ "%.0f"|format(s.total-s.paid) }} so‘m</div></div></div>
-    <div class="card"><h3>So‘nggi buyurtmalar</h3><div class="wrap"><table>
-    <tr><th>Gilam №</th><th>Mijoz</th><th>Summa</th><th>Holat</th></tr>
-    {% for o in recent %}<tr><td><b>{{ o.carpet_no }}</b></td><td>{{ o.name }}</td>
-    <td>{{ "%.0f"|format(o.total) }} so‘m</td><td><span class="badge">{{ o.status }}</span></td></tr>{% else %}
-    <tr><td colspan="4">Hozircha buyurtma yo‘q.</td></tr>{% endfor %}</table></div></div>
+      <div class="card">Jami buyurtmalar<div class="stat">{{ s.orders_count or 0 }}</div></div>
+      <div class="card">Mijozlar<div class="stat">{{ customers }}</div></div>
+      <div class="card">Yetkazishga tayyor<div class="stat">{{ s.ready or 0 }}</div></div>
+      <div class="card">Buyurtma summasi<div class="stat">{{ "%.0f"|format(s.total) }} so‘m</div></div>
+      <div class="card">Qolgan qarz<div class="stat" style="color:#dc2626;">{{ "%.0f"|format(s.total-s.paid) }} so‘m</div></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;margin-bottom:16px;">So‘nggi buyurtmalar</h3>
+      <div class="wrap"><table>
+        <tr><th>Gilam №</th><th>Mijoz</th><th>Summa</th><th>Holat</th></tr>
+        {% for o in recent %}
+        <tr>
+          <td><b>{{ o.carpet_no }}</b></td>
+          <td>{{ o.name }}</td>
+          <td>{{ "%.0f"|format(o.total) }} so‘m</td>
+          <td><span class="badge">{{ o.status }}</span></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" style="text-align:center;color:var(--text-muted);">Hozircha buyurtma yo‘q.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Bosh sahifa", s=stats, customers=cust_count, recent=recent)
 
@@ -314,22 +348,37 @@ def customers():
         else:
             rows = con.execute("SELECT * FROM customers ORDER BY id DESC LIMIT 100").fetchall()
     content = """
-    <div class="card"><h2>Yangi mijoz</h2>{% if error %}<p class="error">{{ error }}</p>{% endif %}
-    <form method="post"><label>Ism-familiya *</label><input name="name" placeholder="Masalan: Ali Valiyev" required>
-    <label>Telefon *</label><input name="phone" type="tel" placeholder="+998901234567" required>
-    <label>Manzil</label><input name="address" placeholder="Tuman, ko'cha, uy raqami"><label>Izoh</label><textarea name="notes"></textarea>
-    <button>Mijozni saqlash</button></form></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Yangi mijoz qo‘shish</h2>
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      <form method="post">
+        <label>Ism-familiya *</label><input name="name" placeholder="Masalan: Ali Valiyev" required>
+        <label>Telefon *</label><input name="phone" type="tel" placeholder="+998901234567" required>
+        <label>Manzil</label><input name="address" placeholder="Tuman, ko'cha, uy raqami">
+        <label>Izoh</label><textarea name="notes" placeholder="Qo'shimcha ma'lumot..."></textarea>
+        <button>Mijozni saqlash</button>
+      </form>
+    </div>
     
     <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
-      <h2>Mijozlar ro‘yxati</h2>
-      <form method="get" style="width:250px;margin:0;"><input name="q" value="{{ search }}" placeholder="Ism yoki tel bo'yicha qidiruv..."></form>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+        <h2 style="margin:0;">Mijozlar ro‘yxati</h2>
+        <form method="get" style="width:280px;margin:0;"><input name="q" value="{{ search }}" placeholder="Ism yoki tel bo'yicha qidirish..." style="margin:0;"></form>
+      </div>
+      <div class="wrap"><table>
+        <tr><th>Ism</th><th>Telefon</th><th>Manzil</th><th>Izoh</th></tr>
+        {% for c in rows %}
+        <tr>
+          <td><b>{{ c.name }}</b></td>
+          <td><a href="tel:{{ c.phone }}" style="color:var(--primary);text-decoration:none;font-weight:600;">{{ c.phone }}</a></td>
+          <td>{{ c.address }}</td>
+          <td>{{ c.notes }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" style="text-align:center;color:var(--text-muted);">Mijozlar topilmadi.</td></tr>
+        {% endfor %}
+      </table></div>
     </div>
-    <div class="wrap"><table>
-    <tr><th>Ism</th><th>Telefon</th><th>Manzil</th><th>Izoh</th></tr>
-    {% for c in rows %}<tr><td><b>{{ c.name }}</b></td><td><a href="tel:{{ c.phone }}">{{ c.phone }}</a></td>
-    <td>{{ c.address }}</td><td>{{ c.notes }}</td></tr>{% else %}<tr><td colspan="4">Mijozlar topilmadi.</td></tr>{% endfor %}
-    </table></div></div>
     """
     return page(content, title="Mijozlar", rows=rows, search=search, error=error)
 
@@ -381,28 +430,45 @@ def orders():
                 ORDER BY o.id DESC LIMIT 100
             """).fetchall()
     content = """
-    <div class="card"><h2>Buyurtma qo‘shish</h2>{% if error %}<p class="error">{{ error }}</p>{% endif %}
-    <form method="post"><label>Gilam raqami *</label><input name="carpet_no" placeholder="GTG-0001" required>
-    <label>Mijoz ismi *</label><input name="name" required><label>Telefon *</label><input name="phone" type="tel" required>
-    <label>Manzil</label><input name="address"><label>Maydon (m²) *</label><input type="number" name="area" min="0.1" step="0.1" required>
-    <label>1 m² narxi (so'm)</label><input type="number" name="price" min="0" value="12000" required>
-    <label>To‘langan summa (so'm)</label><input type="number" name="paid" min="0" value="0" required>
-    <label>Izoh</label><textarea name="notes"></textarea><button>Buyurtmani saqlash</button></form></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Buyurtma qo‘shish</h2>
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      <form method="post">
+        <label>Gilam raqami *</label><input name="carpet_no" placeholder="GTG-0001" required>
+        <label>Mijoz ismi *</label><input name="name" required>
+        <label>Telefon *</label><input name="phone" type="tel" required>
+        <label>Manzil</label><input name="address">
+        <label>Maydon (m²) *</label><input type="number" name="area" min="0.1" step="0.1" required>
+        <label>1 m² narxi (so'm)</label><input type="number" name="price" min="0" value="12000" required>
+        <label>To‘langan summa (so'm)</label><input type="number" name="paid" min="0" value="0" required>
+        <label>Izoh</label><textarea name="notes"></textarea>
+        <button>Buyurtmani saqlash</button>
+      </form>
+    </div>
     
     <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
-      <h2>Buyurtmalar</h2>
-      <form method="get" style="width:250px;margin:0;"><input name="q" value="{{ search }}" placeholder="Gilam № yoki mijoz bo'yicha..."></form>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+        <h2 style="margin:0;">Buyurtmalar</h2>
+        <form method="get" style="width:280px;margin:0;"><input name="q" value="{{ search }}" placeholder="Gilam № yoki mijoz..." style="margin:0;"></form>
+      </div>
+      <div class="wrap"><table>
+        <tr><th>Gilam №</th><th>Mijoz</th><th>Telefon</th><th>m²</th><th>Summa</th><th>Qarz</th><th>Holat</th><th>Chek</th></tr>
+        {% for o in rows %}
+        <tr>
+          <td><b>{{ o.carpet_no }}</b></td>
+          <td>{{ o.name }}</td>
+          <td><a href="tel:{{ o.phone }}" style="color:var(--primary);text-decoration:none;">{{ o.phone }}</a></td>
+          <td>{{ o.area }}</td>
+          <td>{{ "%.0f"|format(o.total) }}</td>
+          <td style="color:#dc2626;font-weight:600;">{{ "%.0f"|format(o.total-o.paid) }}</td>
+          <td><span class="badge">{{ o.status }}</span></td>
+          <td><a href="/receipt/{{ o.id }}" target="_blank" class="btn sm secondary">Chek</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="8" style="text-align:center;color:var(--text-muted);">Buyurtmalar topilmadi.</td></tr>
+        {% endfor %}
+      </table></div>
     </div>
-    <div class="wrap"><table>
-    <tr><th>Gilam №</th><th>Mijoz</th><th>Telefon</th><th>m²</th><th>Summa</th><th>Qarz</th><th>Holat</th><th>Chek</th></tr>
-    {% for o in rows %}<tr>
-    <td><b>{{ o.carpet_no }}</b></td><td>{{ o.name }}</td><td><a href="tel:{{ o.phone }}">{{ o.phone }}</a></td><td>{{ o.area }}</td>
-    <td>{{ "%.0f"|format(o.total) }}</td><td style="color:#dc2626;font-weight:600;">{{ "%.0f"|format(o.total-o.paid) }}</td>
-    <td><span class="badge">{{ o.status }}</span></td>
-    <td><a href="/receipt/{{ o.id }}" target="_blank" class="btn sm secondary">Chek</a></td>
-    </tr>
-    {% else %}<tr><td colspan="8">Buyurtmalar topilmadi.</td></tr>{% endfor %}</table></div></div>
     """
     return page(content, title="Buyurtmalar", rows=rows, search=search, error=error)
 
@@ -422,16 +488,16 @@ def receipt(order_id):
     <!doctype html><html><head><meta charset="utf-8">
     <title>Chek #{order['carpet_no']}</title>
     <style>
-      body{{font-family:monospace;padding:20px;max-width:320px;margin:auto;background:#fff;border:1px solid #ccc}}
+      body{{font-family:'Courier New',Courier,monospace;padding:15px;max-width:300px;margin:auto;background:#fff;color:#000}}
       h3,p{{text-align:center;margin:4px 0}}
       .line{{border-top:1px dashed #000;margin:10px 0}}
-      .row{{display:flex;justify-content:space-between;margin:4px 0}}
+      .row{{display:flex;justify-content:space-between;margin:4px 0;font-size:13px}}
     </style></head><body onload="window.print()">
       <h3>G'IJDUVON TOZA GILAM</h3>
       <p>Tel: +998 90 123 45 67</p>
       <div class="line"></div>
       <p><b>Kvitansiya: #{order['carpet_no']}</b></p>
-      <p>Vaqt: {order['created_at']}</p>
+      <p style="font-size:11px;">Vaqt: {order['created_at']}</p>
       <div class="line"></div>
       <div class="row"><span>Mijoz:</span><span>{order['name']}</span></div>
       <div class="row"><span>Tel:</span><span>{order['phone']}</span></div>
@@ -447,7 +513,7 @@ def receipt(order_id):
       <div class="row"><span>To'landi:</span><span>{order['paid']:,.0f} so'm</span></div>
       <div class="row"><b>Qarz:</b><b>{(order['total']-order['paid']):,.0f} so'm</b></div>
       <div class="line"></div>
-      <p>Xizmatingizdan xursandmiz!</p>
+      <p style="font-size:12px;">Xizmatimizdan foydalanganingiz uchun tashakkur!</p>
     </body></html>
     """
     return receipt_html
@@ -476,15 +542,31 @@ def employees():
     with connect_db() as con:
         rows = con.execute("SELECT id,username,role,active FROM users ORDER BY id").fetchall()
     content = """
-    <div class="card"><h2>Xodim qo‘shish</h2>{% if error %}<p class="error">{{ error }}</p>{% endif %}
-    <form method="post"><label>Login</label><input name="username" required>
-    <label>Vaqtinchalik parol (kamida 8 belgi)</label><input name="password" type="password" minlength="8" required>
-    <label>Lavozim</label><select name="role">{% for key,label in roles.items() %}
-    <option value="{{ key }}">{{ label }}</option>{% endfor %}</select><button>Xodim yaratish</button></form></div>
-    <div class="card"><h2>Xodimlar ro‘yxati</h2><div class="wrap"><table>
-    <tr><th>Login</th><th>Lavozim</th><th>Holat</th></tr>
-    {% for u in rows %}<tr><td><b>{{ u.username }}</b></td><td>{{ roles.get(u.role,u.role) }}</td>
-    <td>{{ 'Faol' if u.active else 'O‘chirilgan' }}</td></tr>{% endfor %}</table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Xodim qo‘shish</h2>
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      <form method="post">
+        <label>Login</label><input name="username" required placeholder="Xodim logini">
+        <label>Vaqtinchalik parol (kamida 8 belgi)</label><input name="password" type="password" minlength="8" required placeholder="********">
+        <label>Lavozim</label><select name="role">
+          {% for key,label in roles.items() %}<option value="{{ key }}">{{ label }}</option>{% endfor %}
+        </select>
+        <button>Xodim yaratish</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0;">Xodimlar ro‘yxati</h2>
+      <div class="wrap"><table>
+        <tr><th>Login</th><th>Lavozim</th><th>Holat</th></tr>
+        {% for u in rows %}
+        <tr>
+          <td><b>{{ u.username }}</b></td>
+          <td>{{ roles.get(u.role,u.role) }}</td>
+          <td><span class="badge" style="background:{{ '#ecfdf5' if u.active else '#fef2f2' }};color:{{ '#047857' if u.active else '#dc2626' }};">{{ 'Faol' if u.active else 'O‘chirilgan' }}</span></td>
+        </tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Xodimlar", rows=rows, roles=ROLES, error=error)
 
@@ -523,7 +605,7 @@ def delivery():
                         """, (order_cur.lastrowid, cur.lastrowid, session["user_id"]))
                     return redirect(url_for("delivery", carpet_no=carpet_no, registered="1"))
                 except sqlite3.IntegrityError:
-                    error = "Bu gilam raqami avval ishlatilgan. Avval qidirib ko‘ring."
+                    error = "Bu gilam raqami avval ishlatilgan."
 
         elif action == "location":
             carpet_no = request.form.get("carpet_no", "").strip()
@@ -534,7 +616,7 @@ def delivery():
                     raise ValueError()
             except (ValueError, TypeError):
                 lat = lon = None
-                error = "GPS lokatsiya olinmadi. Brauzer ruxsatini tekshiring."
+                error = "GPS lokatsiya olinmadi."
             if not error:
                 with connect_db() as con:
                     order = con.execute(
@@ -558,7 +640,7 @@ def delivery():
                 if not order:
                     error = "Gilam raqami topilmadi."
                 elif order["status"] == "Yetkazildi":
-                    error = "Bu buyurtma allaqachon yetkazildi deb belgilangan."
+                    error = "Bu buyurtma allaqachon yetkazilgan."
                 else:
                     con.execute("""
                         UPDATE orders SET status='Yetkazildi', delivery_user_id=?
@@ -570,7 +652,7 @@ def delivery():
                     """, (order["id"], order["customer_id"], session["user_id"]))
                     return redirect(url_for("delivery", carpet_no=carpet_no, delivered="1"))
         else:
-            error = "Amal turi noto‘g‘ri."
+            error = "Noma’lum amal."
 
     query = request.args.get("carpet_no", "").strip()
     with connect_db() as con:
@@ -589,53 +671,70 @@ def delivery():
     if request.args.get("registered") == "1":
         message = "Mijoz va gilam ro‘yxatga olindi."
     elif request.args.get("location_sent") == "1":
-        message = "Lokatsiya saqlandi va xaritada ko‘rinadi."
+        message = "Lokatsiya muvaffaqiyatli saqlandi."
     elif request.args.get("delivered") == "1":
         message = "Buyurtma yetkazildi deb belgilandi."
 
     content = """
     {% if role in ['delivery', 'admin'] %}
-    <div class="card"><h2>Yangi mijoz va gilam qo‘shish</h2>
-    {% if message %}<p class="success">{{ message }}</p>{% endif %}
-    {% if error %}<p class="error">{{ error }}</p>{% endif %}
-    <form method="post"><input type="hidden" name="action" value="register">
-    <label>Gilam raqami *</label><input name="carpet_no" placeholder="GTG-0001" required>
-    <label>Mijoz ism-familiyasi *</label><input name="name" required>
-    <label>Telefon raqami *</label><input name="phone" type="tel" placeholder="+998901234567" required>
-    <label>Uy manzili / mo‘ljal</label><input name="address">
-    <label>Izoh</label><textarea name="notes"></textarea>
-    <button>Mijoz va gilamni saqlash</button></form></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Yangi mijoz va gilam qo‘shish</h2>
+      {% if message %}<div class="success">{{ message }}</div>{% endif %}
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      <form method="post">
+        <input type="hidden" name="action" value="register">
+        <label>Gilam raqami *</label><input name="carpet_no" placeholder="GTG-0001" required>
+        <label>Mijoz ism-familiyasi *</label><input name="name" required>
+        <label>Telefon raqami *</label><input name="phone" type="tel" placeholder="+998901234567" required>
+        <label>Uy manzili / mo‘ljal</label><input name="address">
+        <label>Izoh</label><textarea name="notes"></textarea>
+        <button>Mijoz va gilamni saqlash</button>
+      </form>
+    </div>
     {% endif %}
 
-    <div class="card"><h2>Gilam raqami bilan mijozni topish</h2>
-    <form method="get"><label>Gilam raqami</label>
-    <input name="carpet_no" value="{{ query }}" placeholder="GTG-0001" required>
-    <button>Mijozni qidirish</button></form>
-    {% if customer %}<h3>Mijoz ma’lumotlari</h3>
-    <p><b>Gilam raqami:</b> {{ customer.carpet_no }}</p>
-    <p><b>Ism:</b> {{ customer.name }}</p>
-    <p><b>Telefon:</b> <a href="tel:{{ customer.phone }}">{{ customer.phone }}</a></p>
-    <p><b>Manzil:</b> {{ customer.address }}</p><p><b>Holat:</b> <span class="badge">{{ customer.status }}</span></p>
-    {% elif query %}<p class="error">Gilam raqami topilmadi.</p>{% endif %}</div>
+    <div class="card">
+      <h2 style="margin-top:0;">Gilam raqami bilan qidirish</h2>
+      <form method="get">
+        <label>Gilam raqami</label>
+        <input name="carpet_no" value="{{ query }}" placeholder="GTG-0001" required>
+        <button>Mijozni qidirish</button>
+      </form>
+      {% if customer %}
+      <div style="background:#f8fafc;padding:16px;border-radius:12px;margin-top:16px;border:1px solid var(--border-color);">
+        <h3 style="margin-top:0;color:var(--primary);">Mijoz ma’lumotlari</h3>
+        <p><b>Gilam raqami:</b> {{ customer.carpet_no }}</p>
+        <p><b>Ism:</b> {{ customer.name }}</p>
+        <p><b>Telefon:</b> <a href="tel:{{ customer.phone }}" style="color:var(--primary);text-decoration:none;">{{ customer.phone }}</a></p>
+        <p><b>Manzil:</b> {{ customer.address }}</p>
+        <p><b>Holat:</b> <span class="badge">{{ customer.status }}</span></p>
+      </div>
+      {% elif query %}<div class="error" style="margin-top:12px;">Gilam raqami topilmadi.</div>{% endif %}
+    </div>
 
     {% if customer %}
-    <div class="card"><h2>Buyurtma yetkazish holati</h2>
-    {% if customer.status == 'Yetkazildi' %}
-      <p class="success"><b>Bu buyurtma yetkazildi.</b></p>
-    {% else %}
-      <form method="post" onsubmit="return confirm('Bu buyurtma mijozga yetkazildimi?');">
-        <input type="hidden" name="action" value="delivered">
-        <input type="hidden" name="carpet_no" value="{{ customer.carpet_no }}">
-        <button type="submit">Yetkazildi deb belgilash</button>
-      </form>
-    {% endif %}
+    <div class="card">
+      <h2 style="margin-top:0;">Yetkazish amallari</h2>
+      {% if customer.status == 'Yetkazildi' %}
+        <div class="success">Bu buyurtma allaqachon yetkazilgan.</div>
+      {% else %}
+        <form method="post" onsubmit="return confirm('Bu buyurtma mijozga yetkazildimi?');">
+          <input type="hidden" name="action" value="delivered">
+          <input type="hidden" name="carpet_no" value="{{ customer.carpet_no }}">
+          <button style="background:#0284c7;">Yetkazildi deb belgilash</button>
+        </form>
+      {% endif %}
     </div>
-    <div class="card"><h2>Mijoz joylashuvini yuborish</h2>
-    <form method="post" id="gpsForm"><input type="hidden" name="action" value="location">
-    <input type="hidden" name="carpet_no" value="{{ customer.carpet_no }}">
-    <input type="hidden" name="latitude" id="lat"><input type="hidden" name="longitude" id="lon">
-    <button type="button" onclick="sendGPS()">GPS lokatsiyasini yuborish</button>
-    <p id="gpsMessage" class="small">Tugmani bosganda telefon lokatsiyasi olinadi.</p></form></div>
+    <div class="card">
+      <h2 style="margin-top:0;">GPS lokatsiya yuborish</h2>
+      <form method="post" id="gpsForm">
+        <input type="hidden" name="action" value="location">
+        <input type="hidden" name="carpet_no" value="{{ customer.carpet_no }}">
+        <input type="hidden" name="latitude" id="lat"><input type="hidden" name="longitude" id="lon">
+        <button type="button" onclick="sendGPS()" style="background:#ea580c;">GPS lokatsiyasini yuborish</button>
+        <p id="gpsMessage" class="small" style="text-align:center;margin-top:8px;">Tugmani bosganda telefoningiz lokatsiyasi aniqlanadi.</p>
+      </form>
+    </div>
     <script>
     function sendGPS(){
       const msg=document.getElementById('gpsMessage');
@@ -649,15 +748,26 @@ def delivery():
       },function(e){msg.textContent='GPS xatosi: '+e.message;},
       {enableHighAccuracy:true,timeout:15000});
     }
-    </script>{% endif %}
+    </script>
+    {% endif %}
 
-    <div class="card"><h2>Saqlangan lokatsiyalar</h2><div class="wrap"><table>
-    <tr><th>Gilam №</th><th>Mijoz</th><th>Dostavchik</th><th>Vaqt</th><th>Xarita</th></tr>
-    {% for l in locs %}<tr><td><b>{{ l.carpet_no }}</b></td><td>{{ l.name }}<br>{{ l.phone }}</td>
-    <td>{{ l.username }}</td><td>{{ l.created_at }}</td><td>
-    <a target="_blank" rel="noopener" href="https://www.google.com/maps?q={{ l.latitude }},{{ l.longitude }}" class="btn sm secondary">Xaritada ochish</a>
-    </td></tr>{% else %}<tr><td colspan="5">Lokatsiyalar hali yuborilmagan.</td></tr>{% endfor %}
-    </table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Saqlangan lokatsiyalar</h2>
+      <div class="wrap"><table>
+        <tr><th>Gilam №</th><th>Mijoz</th><th>Dostavchik</th><th>Vaqt</th><th>Xarita</th></tr>
+        {% for l in locs %}
+        <tr>
+          <td><b>{{ l.carpet_no }}</b></td>
+          <td>{{ l.name }}<br><span class="small">{{ l.phone }}</span></td>
+          <td>{{ l.username }}</td>
+          <td>{{ l.created_at }}</td>
+          <td><a target="_blank" rel="noopener" href="https://www.google.com/maps?q={{ l.latitude }},{{ l.longitude }}" class="btn sm secondary">Xaritada ochish</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" style="text-align:center;color:var(--text-muted);">Lokatsiyalar hali yuborilmagan.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Dostavchik paneli", role=role, query=query,
                 customer=customer, locs=locs, message=message, error=error)
@@ -676,7 +786,7 @@ def production():
 
         if action == "measure":
             if role not in ("admin", "washer"):
-                return page("<div class='card'>Razmer va buyumlarni faqat gilam yuvuvchi yoki administrator o‘zgartiradi.</div>"), 403
+                return page("<div class='card'>Razmer va buyumlarni faqat yuvuvchi o‘zgartiradi.</div>"), 403
             try:
                 length = float(request.form.get("length_m", "0") or 0)
                 width = float(request.form.get("width_m", "0") or 0)
@@ -707,14 +817,14 @@ def production():
                         """, (length, width, area, k2, k3, adyol, yostiq, total, paid, carpet_no))
                         message = f"Hisob saqlandi! Maydon: {area:.2f} m², Jami: {total:,.0f} so‘m."
             except (ValueError, TypeError):
-                error = "Razmer va miqdorlarni tekshiring."
+                error = "Razmer va miqdorlarni to'g'ri kiriting."
 
         elif action == "status":
             status = request.form.get("status", "")
             allowed = {
                 "admin": STATUSES,
                 "washer": ["Yuvilmoqda"],
-                "dryer": ["Siqildi", "Quritilmoqda"],
+                "dryer": [],
                 "packer": ["Qadoqlandi", "Yetkazishga tayyor"],
             }.get(role, [])
             if status not in allowed:
@@ -739,89 +849,92 @@ def production():
         """).fetchall()
 
     content = """
-    <div class="card"><h2>Ishlab chiqarish paneli</h2>
-    {% if message %}<p class="success">{{ message }}</p>{% endif %}
-    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <div class="card">
+      <h2 style="margin-top:0;">Ishlab chiqarish paneli</h2>
+      {% if message %}<div class="success">{{ message }}</div>{% endif %}
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
 
-    {% if role in ['admin', 'washer'] %}
-    <form method="post" class="card" style="background:#f8fafc;border:1px solid #cbd5e1;">
-    <h3>Razmer va buyumlarni kiritish (Yuvuvchi)</h3>
-    <input type="hidden" name="action" value="measure">
-    <label>Gilam raqami *</label><input name="carpet_no" id="carpet_no" placeholder="GTG-0001" required>
-    <div class="grid">
-      <div><label>Uzunligi (m)</label><input type="number" step="0.01" name="length_m" id="len" min="0" placeholder="0" oninput="calcTotal()"></div>
-      <div><label>Eni (m)</label><input type="number" step="0.01" name="width_m" id="wid" min="0" placeholder="0" oninput="calcTotal()"></div>
-    </div>
-    <div class="grid">
-      <div><label>Ko‘rpacha (2m)</label><input type="number" name="ko_rpacha_2m" id="k2" min="0" value="0" oninput="calcTotal()"></div>
-      <div><label>Ko‘rpacha (3m)</label><input type="number" name="ko_rpacha_3m" id="k3" min="0" value="0" oninput="calcTotal()"></div>
-      <div><label>Adyol</label><input type="number" name="adyol_qty" id="adyol" min="0" value="0" oninput="calcTotal()"></div>
-      <div><label>Yostiq</label><input type="number" name="yostiq_qty" id="yostiq" min="0" value="0" oninput="calcTotal()"></div>
-    </div>
-    <label>To‘langan summa (so‘m)</label><input type="number" name="paid" id="paid" min="0" value="0" oninput="calcTotal()">
-    
-    <!-- Real vaqt rejimidagi kalkulyator ekrani -->
-    <div class="calc-box">
-      <div class="calc-title">Hisob-kitob natijasi (Avto-kalkulyatsiya):</div>
-      <div>Maydon: <b><span id="res_area">0</span> m²</b> | Gilam summasi: <b><span id="res_carpet">0</span> so'm</b></div>
-      <div>Qo'shimcha buyumlar: <b><span id="res_items">0</span> so'm</b></div>
-      <div style="font-size:18px;margin-top:6px;color:#047857;">Jami summa: <b><span id="res_total">0</span> so'm</b></div>
-      <div style="color:#dc2626;">Qolgan qarz: <b><span id="res_debt">0</span> so'm</b></div>
-    </div>
+      {% if role in ['admin', 'washer'] %}
+      <form method="post" class="card" style="background:#f8fafc;border:1px solid var(--border-color);margin-top:16px;">
+        <h3 style="margin-top:0;color:var(--primary);">Razmer va buyumlarni kiritish (Yuvuvchi)</h3>
+        <input type="hidden" name="action" value="measure">
+        <label>Gilam raqami *</label><input name="carpet_no" id="carpet_no" placeholder="GTG-0001" required>
+        <div class="grid">
+          <div><label>Uzunligi (m)</label><input type="number" step="0.01" name="length_m" id="len" min="0" placeholder="0" oninput="calcTotal()"></div>
+          <div><label>Eni (m)</label><input type="number" step="0.01" name="width_m" id="wid" min="0" placeholder="0" oninput="calcTotal()"></div>
+        </div>
+        <div class="grid">
+          <div><label>Ko‘rpacha (2m)</label><input type="number" name="ko_rpacha_2m" id="k2" min="0" value="0" oninput="calcTotal()"></div>
+          <div><label>Ko‘rpacha (3m)</label><input type="number" name="ko_rpacha_3m" id="k3" min="0" value="0" oninput="calcTotal()"></div>
+          <div><label>Adyol</label><input type="number" name="adyol_qty" id="adyol" min="0" value="0" oninput="calcTotal()"></div>
+          <div><label>Yostiq</label><input type="number" name="yostiq_qty" id="yostiq" min="0" value="0" oninput="calcTotal()"></div>
+        </div>
+        <label>To‘langan summa (so‘m)</label><input type="number" name="paid" id="paid" min="0" value="0" oninput="calcTotal()">
+        
+        <div class="calc-box">
+          <div class="calc-title">Avtomatik hisob-kitob:</div>
+          <div>Maydon: <b><span id="res_area">0</span> m²</b> | Gilam summasi: <b><span id="res_carpet">0</span> so'm</b></div>
+          <div>Qo'shimcha buyumlar: <b><span id="res_items">0</span> so'm</b></div>
+          <div style="font-size:18px;margin-top:6px;color:#047857;">Jami summa: <b><span id="res_total">0</span> so'm</b></div>
+          <div style="color:#dc2626;margin-top:4px;">Qolgan qarz: <b><span id="res_debt">0</span> so'm</b></div>
+        </div>
+        <button>Razmer va hisobni saqlash</button>
+      </form>
+      <script>
+      function calcTotal(){
+        const l = parseFloat(document.getElementById('len').value) || 0;
+        const w = parseFloat(document.getElementById('wid').value) || 0;
+        const k2 = parseInt(document.getElementById('k2').value) || 0;
+        const k3 = parseInt(document.getElementById('k3').value) || 0;
+        const adyol = parseInt(document.getElementById('adyol').value) || 0;
+        const yostiq = parseInt(document.getElementById('yostiq').value) || 0;
+        const paid = parseFloat(document.getElementById('paid').value) || 0;
 
-    <button>Razmer va hisobni saqlash</button>
-    </form>
+        const area = Math.round((l * w) * 100) / 100;
+        const carpetTotal = area * 12000;
+        const itemsTotal = (k2 * 40000) + (k3 * 50000) + (adyol * 60000) + (yostiq * 25000);
+        const grandTotal = carpetTotal + itemsTotal;
+        const debt = grandTotal - paid;
 
-    <script>
-    function calcTotal(){
-      const l = parseFloat(document.getElementById('len').value) || 0;
-      const w = parseFloat(document.getElementById('wid').value) || 0;
-      const k2 = parseInt(document.getElementById('k2').value) || 0;
-      const k3 = parseInt(document.getElementById('k3').value) || 0;
-      const adyol = parseInt(document.getElementById('adyol').value) || 0;
-      const yostiq = parseInt(document.getElementById('yostiq').value) || 0;
-      const paid = parseFloat(document.getElementById('paid').value) || 0;
+        document.getElementById('res_area').innerText = area.toFixed(2);
+        document.getElementById('res_carpet').innerText = carpetTotal.toLocaleString('uz-UZ');
+        document.getElementById('res_items').innerText = itemsTotal.toLocaleString('uz-UZ');
+        document.getElementById('res_total').innerText = grandTotal.toLocaleString('uz-UZ');
+        document.getElementById('res_debt').innerText = (debt > 0 ? debt : 0).toLocaleString('uz-UZ');
+      }
+      </script>
+      {% endif %}
 
-      const area = Math.round((l * w) * 100) / 100;
-      const carpetTotal = area * 12000;
-      const itemsTotal = (k2 * 40000) + (k3 * 50000) + (adyol * 60000) + (yostiq * 25000);
-      const grandTotal = carpetTotal + itemsTotal;
-      const debt = grandTotal - paid;
-
-      document.getElementById('res_area').innerText = area.toFixed(2);
-      document.getElementById('res_carpet').innerText = carpetTotal.toLocaleString('uz-UZ');
-      document.getElementById('res_items').innerText = itemsTotal.toLocaleString('uz-UZ');
-      document.getElementById('res_total').innerText = grandTotal.toLocaleString('uz-UZ');
-      document.getElementById('res_debt').innerText = (debt > 0 ? debt : 0).toLocaleString('uz-UZ');
-    }
-    </script>
-    {% endif %}
-
-    <form method="post">
-    <h3>Buyurtma holatini o‘zgartirish</h3>
-    <input type="hidden" name="action" value="status">
-    <label>Gilam raqami</label><input name="carpet_no" placeholder="GTG-0001" required>
-    <label>Yangi holat</label><select name="status">
-      {% for s in statuses %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
-    </select>
-    <button>Holatni yangilash</button>
-    </form>
+      <form method="post" style="margin-top:20px;">
+        <h3 style="margin-top:0;color:var(--primary);">Buyurtma holatini o‘zgartirish</h3>
+        <input type="hidden" name="action" value="status">
+        <label>Gilam raqami</label><input name="carpet_no" placeholder="GTG-0001" required>
+        <label>Yangi holat</label><select name="status">
+          {% for s in statuses %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
+        </select>
+        <button style="background:#0284c7;">Holatni yangilash</button>
+      </form>
     </div>
 
-    <div class="card"><h2>Faol buyurtmalar</h2><div class="wrap"><table>
-    <tr><th>Gilam №</th><th>Mijoz</th><th>O‘lcham</th><th>Buyumlar</th><th>Summa</th><th>Holat</th><th>Kvitansiya</th></tr>
-    {% for r in rows %}
-    <tr>
-      <td><b>{{ r.carpet_no }}</b></td>
-      <td>{{ r.name }}<br><span class="small"><a href="tel:{{ r.phone }}">{{ r.phone }}</a></span></td>
-      <td>{{ r.length_m }}m × {{ r.width_m }}m<br>({{ r.area }} m²)</td>
-      <td class="small">K2: {{ r.ko_rpacha_2m }}, K3: {{ r.ko_rpacha_3m }}<br>Adyol: {{ r.adyol_qty }}, Yostiq: {{ r.yostiq_qty }}</td>
-      <td><b>{{ "%.0f"|format(r.total) }}</b><br><span class="small">To‘landi: {{ "%.0f"|format(r.paid) }}</span></td>
-      <td><span class="badge">{{ r.status }}</span></td>
-      <td><a href="/receipt/{{ r.id }}" target="_blank" class="btn sm secondary">Chop etish</a></td>
-    </tr>
-    {% else %}<tr><td colspan="7">Buyurtmalar yo‘q.</td></tr>{% endfor %}
-    </table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Faol buyurtmalar</h2>
+      <div class="wrap"><table>
+        <tr><th>Gilam №</th><th>Mijoz</th><th>O‘lcham</th><th>Buyumlar</th><th>Summa</th><th>Holat</th><th>Chek</th></tr>
+        {% for r in rows %}
+        <tr>
+          <td><b>{{ r.carpet_no }}</b></td>
+          <td>{{ r.name }}<br><span class="small"><a href="tel:{{ r.phone }}" style="color:var(--primary);">{{ r.phone }}</a></span></td>
+          <td>{{ r.length_m }}m × {{ r.width_m }}m<br><span class="small">({{ r.area }} m²)</span></td>
+          <td class="small">K2: {{ r.ko_rpacha_2m }}, K3: {{ r.ko_rpacha_3m }}<br>Adyol: {{ r.adyol_qty }}, Yostiq: {{ r.yostiq_qty }}</td>
+          <td><b>{{ "%.0f"|format(r.total) }}</b><br><span class="small">To‘landi: {{ "%.0f"|format(r.paid) }}</span></td>
+          <td><span class="badge">{{ r.status }}</span></td>
+          <td><a href="/receipt/{{ r.id }}" target="_blank" class="btn sm secondary">Chop etish</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="7" style="text-align:center;color:var(--text-muted);">Buyurtmalar yo‘q.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Ishlab chiqarish", role=role, statuses=STATUSES, rows=rows, message=message, error=error)
 
@@ -843,7 +956,7 @@ def finance():
                     "INSERT INTO expenses(title,amount,notes,created_by) VALUES(?,?,?,?)",
                     (title, amount, notes, session["user_id"])
                 )
-            message = "Xarajat saqlandi."
+            message = "Xarajat muvaffaqiyatli saqlandi."
         except (ValueError, TypeError):
             error = "Xarajat nomi va summasini to‘g‘ri kiriting."
 
@@ -863,29 +976,35 @@ def finance():
       <div class="card">Sof foyda<div class="stat">{{ "%.0f"|format(sums.p - exp_sum) }} so‘m</div></div>
     </div>
 
-    <div class="card"><h2>Xarajat qo‘shish</h2>
-    {% if message %}<p class="success">{{ message }}</p>{% endif %}
-    {% if error %}<p class="error">{{ error }}</p>{% endif %}
-    <form method="post">
-      <label>Xarajat nomi (Suv, Elektr, Kimyo, Oylik, Yoqilg'i va h.k.)</label><input name="title" required placeholder="Masalan: Ishchilar oyligi">
-      <label>Summasi (so‘m)</label><input type="number" step="1000" name="amount" required placeholder="0">
-      <label>Izoh</label><textarea name="notes"></textarea>
-      <button>Xarajatni saqlash</button>
-    </form>
+    <div class="card">
+      <h2 style="margin-top:0;">Xarajat qo‘shish</h2>
+      {% if message %}<div class="success">{{ message }}</div>{% endif %}
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      <form method="post">
+        <label>Xarajat nomi (Suv, Elektr, Kimyo, Oylik va h.k.)</label><input name="title" required placeholder="Masalan: Ishchilar oyligi">
+        <label>Summasi (so‘m)</label><input type="number" step="1000" name="amount" required placeholder="0">
+        <label>Izoh</label><textarea name="notes" placeholder="Qo'shimcha izoh..."></textarea>
+        <button style="background:#ea580c;">Xarajatni saqlash</button>
+      </form>
     </div>
 
-    <div class="card"><h2>Xarajatlar tarixi</h2><div class="wrap"><table>
-      <tr><th>Nomi</th><th>Summa</th><th>Izoh</th><th>Kiritdi</th><th>Vaqt</th></tr>
-      {% for ex in expenses %}
-      <tr>
-        <td><b>{{ ex.title }}</b></td>
-        <td style="color:#dc2626;font-weight:600;">{{ "%.0f"|format(ex.amount) }} so‘m</td>
-        <td>{{ ex.notes }}</td>
-        <td>{{ ex.username }}</td>
-        <td>{{ ex.created_at }}</td>
-      </tr>
-      {% else %}<tr><td colspan="5">Xarajatlar yo‘q.</td></tr>{% endfor %}
-    </table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Xarajatlar tarixi</h2>
+      <div class="wrap"><table>
+        <tr><th>Nomi</th><th>Summa</th><th>Izoh</th><th>Kiritdi</th><th>Vaqt</th></tr>
+        {% for ex in expenses %}
+        <tr>
+          <td><b>{{ ex.title }}</b></td>
+          <td style="color:#dc2626;font-weight:600;">{{ "%.0f"|format(ex.amount) }} so‘m</td>
+          <td>{{ ex.notes }}</td>
+          <td>{{ ex.username }}</td>
+          <td>{{ ex.created_at }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" style="text-align:center;color:var(--text-muted);">Xarajatlar yo‘q.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Moliya", sums=sums, exp_sum=exp_sum, expenses=expenses, message=message, error=error)
 
@@ -912,25 +1031,35 @@ def delivery_report():
         """).fetchall()
 
     content = """
-    <div class="card"><h2>Dostavchiklar statistikasi</h2><div class="wrap"><table>
-      <tr><th>Dostavchik</th><th>Olingan gilamlar</th><th>Yetkazilgan gilamlar</th></tr>
-      {% for s in stats %}
-      <tr><td><b>{{ s.username }}</b></td><td>{{ s.picked or 0 }} dona</td><td>{{ s.delivered or 0 }} dona</td></tr>
-      {% else %}<tr><td colspan="3">Dostavchiklar mavjud emas.</td></tr>{% endfor %}
-    </table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">Dostavchiklar statistikasi</h2>
+      <div class="wrap"><table>
+        <tr><th>Dostavchik</th><th>Olingan gilamlar</th><th>Yetkazilgan gilamlar</th></tr>
+        {% for s in stats %}
+        <tr><td><b>{{ s.username }}</b></td><td>{{ s.picked or 0 }} dona</td><td>{{ s.delivered or 0 }} dona</td></tr>
+        {% else %}
+        <tr><td colspan="3" style="text-align:center;color:var(--text-muted);">Dostavchiklar mavjud emas.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
 
-    <div class="card"><h2>So'nggi harakatlar jurnali (Log)</h2><div class="wrap"><table>
-      <tr><th>Vaqt</th><th>Dostavchik</th><th>Gilam №</th><th>Mijoz</th><th>Harakat</th></tr>
-      {% for ev in events %}
-      <tr>
-        <td>{{ ev.created_at }}</td>
-        <td>{{ ev.username }}</td>
-        <td><b>{{ ev.carpet_no }}</b></td>
-        <td>{{ ev.name }} ({{ ev.phone }})</td>
-        <td><span class="badge">{{ 'Olib ketildi' if ev.event_type=='picked_up' else 'Yetkazildi' }}</span></td>
-      </tr>
-      {% else %}<tr><td colspan="5">Voqealar yo‘q.</td></tr>{% endfor %}
-    </table></div></div>
+    <div class="card">
+      <h2 style="margin-top:0;">So'nggi harakatlar jurnali (Log)</h2>
+      <div class="wrap"><table>
+        <tr><th>Vaqt</th><th>Dostavchik</th><th>Gilam №</th><th>Mijoz</th><th>Harakat</th></tr>
+        {% for ev in events %}
+        <tr>
+          <td>{{ ev.created_at }}</td>
+          <td>{{ ev.username }}</td>
+          <td><b>{{ ev.carpet_no }}</b></td>
+          <td>{{ ev.name }} ({{ ev.phone }})</td>
+          <td><span class="badge">{{ 'Olib ketildi' if ev.event_type=='picked_up' else 'Yetkazildi' }}</span></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" style="text-align:center;color:var(--text-muted);">Voqealar yo‘q.</td></tr>
+        {% endfor %}
+      </table></div>
+    </div>
     """
     return page(content, title="Dostavchik hisoboti", stats=stats, events=events)
 
